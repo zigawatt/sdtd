@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Query a 7 days to die server via telnet interface",
   "main": "index.js",
-  "repository": "https://github.com/DamonOehlman/sdtd.git",
+  "repository": "https://github.com/zigawat/sdtd.git",
   "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "license": "MIT",
   "engines": {
