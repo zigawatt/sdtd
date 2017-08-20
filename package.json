@@ -6,7 +6,16 @@
   "repository": "https://github.com/DamonOehlman/sdtd.git",
   "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "gendocs": "gendocs > README.md"
+  },
   "dependencies": {
     "telnet-client": "^0.15.2"
+  },
+  "devDependencies": {
+    "gendocs": "^2.0.1"
   }
 }

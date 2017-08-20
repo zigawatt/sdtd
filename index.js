@@ -1,3 +1,11 @@
+/**
+# zigawat-sdtd
+
+A simple module for querying useful information from a
+[7 Days to Die](https://7daystodie.gamepedia.com/7_Days_to_Die_Wiki) game server via
+the telnet interface.
+**/
+
 const { Player } = require('./lib/player');
 const Telnet = require('telnet-client');
 
@@ -11,7 +19,7 @@ class GameQuery {
     this.connection = connection;
   }
 
-  static async forServer(ip /*: string */, password: /*: string */) {
+  static async forServer(ip /*: string */, password /*: string */) {
     const connection = new Telnet();
     const params = {
       host: ip,
