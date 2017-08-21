@@ -17,6 +17,10 @@ const REGEX_SERVER_VERSION_LEADER = /^game version:\s?/i;
 class GameQuery {
   constructor(connection) {
     this.connection = connection;
+
+    this.connection.once('end', () => {
+      this.connection = null;
+    });
   }
 
   static async forServer(ip /*: string */, password /*: string */) {
@@ -51,6 +55,10 @@ class GameQuery {
   }
 
   async listPlayers() {
+    if (!this.connection) {
+      return [];
+    }
+
     const response = await this.connection.send('lp\n', {
       waitfor: 'in the game'
     });
@@ -63,6 +71,10 @@ class GameQuery {
   }
 
   async getTime() {
+    if (!this.connection) {
+      return '';
+    }
+
     const response = await this.connection.send('gettime\n', {
       waitfor: 'Day'
     });
@@ -71,6 +83,10 @@ class GameQuery {
   }
 
   async getVersion() {
+    if (!this.connection) {
+      return '';
+    }
+
     const response = await this.connection.send('version\n', {
       waitfor: 'Game version:'
     });
@@ -82,10 +98,8 @@ class GameQuery {
   async disconnect() {
     await this.connection.send('exit\n', {
       waitfor: '',
-      timeout: 100
+      timeout: 500
     });
-
-    this.connection.end();
   }
 
   getCommandOutput(command, response) {
