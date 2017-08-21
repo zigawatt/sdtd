@@ -30,15 +30,24 @@ class GameQuery {
       passwordPrompt: 'Please enter password:'
     };
 
+    return new Promise((resolve, reject) => {
+      connection.on('error', err => {
+        unbindListeners();
+        reject(err)
+      });
 
-    try {
-      connection.on('error', err => { throw err });
-      await connection.connect(params);
-    } catch (e) {
-      return null;
+      connection.on('ready', () => {
+        unbindListeners();
+        resolve(new GameQuery(connection));
+      })
+
+      connection.connect(params);
+    });
+
+    function unbindListeners() {
+      connection.removeAllListeners('error');
+      connection.removeAllListeners('ready');
     }
-
-    return new GameQuery(connection);
   }
 
   async listPlayers() {
