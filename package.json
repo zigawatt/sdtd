@@ -1,6 +1,6 @@
 {
   "name": "zigawat-sdtd",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Query a 7 days to die server via telnet interface",
   "main": "index.js",
   "repository": "https://github.com/zigawat/sdtd.git",
