@@ -30,7 +30,14 @@ class GameQuery {
       passwordPrompt: 'Please enter password:'
     };
 
-    await connection.connect(params);
+
+    try {
+      connection.on('error', err => { throw err });
+      await connection.connect(params);
+    } catch (e) {
+      return null;
+    }
+
     return new GameQuery(connection);
   }
 
