@@ -59,12 +59,12 @@ class GameQuery {
       return [];
     }
 
-    const response = await this.connection.send('lp\n', {
+    const response = await this.connection.send('listplayers\n', {
       waitfor: 'in the game'
     });
 
     // get the list of players without the summary line
-    const playerList = this.getCommandOutput('lp', response).slice(0, -1);
+    const playerList = this.getCommandOutput('listplayers', response).slice(0, -1);
 
     // iterate through the player list and part out the player data
     return playerList.map(raw => GameQuery.parsePlayerData(raw));
